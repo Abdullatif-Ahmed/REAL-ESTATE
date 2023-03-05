@@ -1,0 +1,36 @@
+@use "../../Sass/Helpers/Variables" as *;
+.header {
+  padding: 20px 0;
+  z-index: 2;
+  @media (min-width: 768px) {
+    padding: 20px;
+  }
+  @media (max-width: 300px) {
+    .logo {
+      width: 190px;
+    }
+  }
+  .dropdown {
+    .dropdown-toggle {
+      background-color: $secondary-color !important;
+      color: $third-color !important;
+      border-color: $third-color !important;
+    }
+    .dropdown-menu {
+      background-color: $third-color;
+    }
+  }
+
+  .navLink {
+    color: $secondary-color;
+    font-size: 18px;
+    font-weight: 400;
+    transition: 0.4s all linear;
+    padding: 5px 10px;
+    border-radius: 3px;
+    display: block;
+    &:hover {
+      background-color: $secondary-color-hover;
+    }
+  }
+}

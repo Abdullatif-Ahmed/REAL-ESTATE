@@ -1,0 +1,37 @@
+@use "../../Sass/Helpers/Variables" as *;
+.searchForm {
+  background-color: #fff;
+  border: 1px solid #979797;
+  max-width: 570px;
+
+  .inputG {
+    flex: 1;
+    .searchInput {
+      height: 58px;
+      padding: 23px 17px;
+      font-weight: 400;
+      font-size: 14px;
+      @media (min-width: 576px) {
+        font-size: 17px;
+      }
+    }
+    .closeBtn {
+      color: #726f6f;
+      transition: opacity 0.4s linear;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+  .searchBtn {
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    background-color: $main-color;
+    color: #fff;
+    transition: background-color 0.4s linear;
+    &:hover {
+      background-color: $main-color-hover;
+    }
+  }
+}
