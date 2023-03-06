@@ -1,11 +1,12 @@
 @use "../Helpers/Variables" as *;
-
-.heroSec {
+%background {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+.heroSec {
   height: 600px;
-
+  @extend %background;
   &.sale {
     background-image: url("../../Assets/for-sale-hero-img.webp");
   }
@@ -40,6 +41,46 @@
           font-size: 22px;
         }
       }
+    }
+  }
+}
+.trendSec {
+  .overlay {
+    background-image: linear-gradient(90deg, #0006, #0000001a 55%);
+  }
+  background-image: url(../../Assets/trend-sec.webp);
+  @extend %background;
+  padding: 80px 15px;
+  color: #fff;
+  .content {
+    z-index: 1;
+    .heading {
+      font-weight: 400;
+      font-size: 14px;
+      margin-bottom: 20px;
+      @media (min-width: 568px) {
+        font-size: 15px;
+      }
+    }
+    .info {
+      font-weight: 600;
+      font-size: 15px;
+      max-width: 600px;
+      @media (min-width: 568px) {
+        font-size: 22px;
+      }
+    }
+  }
+}
+.servicesSec {
+  padding: 60px 0;
+  .content {
+    .heading {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+    .info {
+      color: #787878;
     }
   }
 }
