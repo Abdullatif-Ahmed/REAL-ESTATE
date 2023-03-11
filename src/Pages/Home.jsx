@@ -30,7 +30,7 @@ const Home = ({ catg }) => {
                 : "Search nearby apartments, condos, and homes for rent"}
             </p>
           </div>
-          <SearchForm />
+          <SearchForm catg={catg} />
         </div>
       </section>
       <section className="servicesSec">

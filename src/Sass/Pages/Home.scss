@@ -5,7 +5,7 @@
   background-position: center;
 }
 .heroSec {
-  height: 600px;
+  height: 100vh;
   @extend %background;
   &.sale {
     background-image: url("../../Assets/for-sale-hero-img.webp");

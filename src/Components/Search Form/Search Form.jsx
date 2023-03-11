@@ -1,16 +1,18 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import { useQuery } from "react-query";
 import TryAgain from "../Try again";
 import { RiseLoader } from "react-spinners";
 import "./Search Form.scss";
 import SearchItems from "../Search Items/Search Items";
-const SearchForm = () => {
+import { useNavigate } from "react-router";
+const SearchForm = ({ catg }) => {
   const [searchVal, setSearchVal] = useState("");
   const [openDropDown, setOpenDropDown] = useState(false);
   const dropDownBtn = useRef();
   const dropDownMenu = useRef();
+  const navigate = useNavigate();
   const { isLoading, data, refetch, isError } = useQuery(
     ["auto-complete", searchVal.trim()],
     () => {
@@ -30,6 +32,27 @@ const SearchForm = () => {
     }
   );
   console.log(data);
+  const searchSelect = (li) => {
+    const city =
+      li.area_type !== "city" &&
+      li.area_type !== "state" &&
+      li.area_type !== "county"
+        ? li.city
+        : "";
+    setSearchVal(`${li[li.area_type]}, ${city && city + ","} ${li.state_code}`);
+    navigate(
+      `/${catg === "sale" ? "stateforsale" : "stateforrent"}/search/${
+        !li?.postal_code ? li[li.area_type].split(" ").join("-") + "_" : ""
+      }${city && city.split(" ").join("-") + "_"}${li.state_code}${
+        li.postal_code
+          ? `/${li.area_type + "s"}/${
+              li[li.area_type].split(" ").join("-") + "_"
+            }${li.postal_code}`
+          : ""
+      }`
+    );
+  };
+
   useEffect(() => {
     const clickOutSide = (e) => {
       if (
@@ -106,6 +129,7 @@ const SearchForm = () => {
                     data={data.data.autocomplete.filter(
                       (el) => el.area_type === "state"
                     )}
+                    searchSelect={searchSelect}
                   />
                 )}
                 {data?.data?.autocomplete?.some(
@@ -116,6 +140,7 @@ const SearchForm = () => {
                     data={data.data.autocomplete.filter(
                       (el) => el.area_type === "city"
                     )}
+                    searchSelect={searchSelect}
                   />
                 )}
                 {data?.data?.autocomplete?.some(
@@ -126,6 +151,7 @@ const SearchForm = () => {
                     data={data.data.autocomplete.filter(
                       (el) => el.area_type === "school"
                     )}
+                    searchSelect={searchSelect}
                   />
                 )}
                 {data?.data?.autocomplete?.some(
@@ -136,6 +162,7 @@ const SearchForm = () => {
                     data={data.data.autocomplete.filter(
                       (el) => el.area_type === "school_district"
                     )}
+                    searchSelect={searchSelect}
                   />
                 )}
                 {data?.data?.autocomplete?.some(
@@ -146,6 +173,7 @@ const SearchForm = () => {
                     data={data.data.autocomplete.filter(
                       (el) => el.area_type === "neighborhood"
                     )}
+                    searchSelect={searchSelect}
                   />
                 )}
                 {data?.data?.autocomplete?.some(
@@ -156,6 +184,7 @@ const SearchForm = () => {
                     data={data.data.autocomplete.filter(
                       (el) => el.area_type === "park"
                     )}
+                    searchSelect={searchSelect}
                   />
                 )}
                 {data?.data?.autocomplete?.some(
@@ -166,6 +195,7 @@ const SearchForm = () => {
                     data={data.data.autocomplete.filter(
                       (el) => el.area_type === "county"
                     )}
+                    searchSelect={searchSelect}
                   />
                 )}
               </div>
@@ -176,4 +206,4 @@ const SearchForm = () => {
     </section>
   );
 };
-export default SearchForm;
+export default memo(SearchForm);

@@ -33,4 +33,13 @@
       background-color: $secondary-color-hover;
     }
   }
+  &.searchPage {
+    box-shadow: 1px 1px 17px #dfdfdf;
+    .navLink {
+      color: $third-color;
+      &:hover {
+        background-color: $third-color-hover;
+      }
+    }
+  }
 }

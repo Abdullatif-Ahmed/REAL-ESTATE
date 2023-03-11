@@ -5,7 +5,7 @@ import { FaSchool } from "react-icons/fa";
 import { GiParkBench } from "react-icons/gi";
 import { IconContext } from "react-icons";
 import { BsHouses } from "react-icons/bs";
-const SearchItems = ({ type, data }) => {
+const SearchItems = ({ type, data, searchSelect }) => {
   return (
     <div>
       <header
@@ -17,7 +17,10 @@ const SearchItems = ({ type, data }) => {
       <ul className="list-unstyled">
         {data.map((l) => (
           <li key={l._id}>
-            <button className="searchItem px-4 py-3 w-100">
+            <button
+              className="searchItem px-4 py-3 w-100"
+              onClick={() => searchSelect(l)}
+            >
               <IconContext.Provider
                 value={{ size: "22", className: "icon me-3" }}
               >
@@ -37,9 +40,9 @@ const SearchItems = ({ type, data }) => {
               </IconContext.Provider>
               {l[type]},{" "}
               {type !== "city" && type !== "county" && type !== "state"
-                ? l.city + ","
+                ? l?.city + ","
                 : ""}
-              {l.state_code}
+              {l?.state_code}
             </button>
           </li>
         ))}

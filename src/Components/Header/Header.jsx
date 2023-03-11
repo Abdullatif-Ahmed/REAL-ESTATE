@@ -10,7 +10,7 @@ const Header = () => {
     <header
       className={`header ${
         pathname.includes("search")
-          ? ""
+          ? "searchPage"
           : "position-absolute w-100 top-0 left-0"
       }`}
     >

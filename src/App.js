@@ -21,11 +21,25 @@ function App() {
                 <Route index element={<Home catg="sale" />} />
                 <Route path="stateforsale">
                   <Route index element={<Home catg="sale" />} />
-                  <Route path="search" element={<Search catg="sale" />} />
+                  <Route
+                    path="search/:fPath"
+                    element={<Search catg="sale" />}
+                  />
+                  <Route
+                    path="search/:fPath/:sPath/:tPath"
+                    element={<Search catg="sale" />}
+                  />
                 </Route>
                 <Route path="stateforrent">
                   <Route index element={<Home catg="rent" />} />
-                  <Route path="search" element={<Search catg="rent" />} />
+                  <Route
+                    path="search/:fPath"
+                    element={<Search catg="rent" />}
+                  />
+                  <Route
+                    path="search/:fPath/:sPath/:tPath"
+                    element={<Search catg="rent" />}
+                  />
                 </Route>
               </Route>
             </Routes>
@@ -38,7 +52,7 @@ function App() {
               fontWeight: "300",
             }}
           >
-            Copyright © 2022 by{" "}
+            Copyright © {new Date().getFullYear()} by{" "}
             <Link to="/" style={{ color: "rgba(224, 7, 7, 1)" }}>
               REAL STATE
             </Link>
